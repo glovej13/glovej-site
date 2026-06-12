@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The things I should have said sooner — life, culture, and yes, the cards too." />
+  <meta name="theme-color" content="#7c28e0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Writing — glovej.ca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7c28e0;
+      --purple-light: #9b4ff0;
+      --bg: #0d0b14;
+      --bg-card: #13101f;
+      --bg-card-hover: #1a1530;
+      --text: #e8e4f0;
+      --text-muted: #9b94b0;
+      --border: #2a2240;
+    }
+
+    /* Theme accent colours */
+    --theme-mental-health: #a78bfa;
+    --theme-life-memory: #60a5fa;
+    --theme-collecting: #34d399;
+    --theme-work-career: #f59e0b;
+    --theme-culture-opinion: #f87171;
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13, 11, 20, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+    /* PAGE HEADER */
+    .page-header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      line-height: 1.2;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* FILTERS */
+    .filters-bar {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-right: 0.5rem;
+    }
+
+    .filter-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--purple);
+      color: var(--text);
+    }
+
+    .filter-btn.active {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: #fff;
+    }
+
+    .filter-btn[data-theme="mental-health"].active { background: #4c1d95; border-color: #a78bfa; color: #a78bfa; }
+    .filter-btn[data-theme="life-memory"].active { background: #1e3a5f; border-color: #60a5fa; color: #60a5fa; }
+    .filter-btn[data-theme="collecting"].active { background: #064e3b; border-color: #34d399; color: #34d399; }
+    .filter-btn[data-theme="work-career"].active { background: #451a03; border-color: #f59e0b; color: #f59e0b; }
+    .filter-btn[data-theme="culture-opinion"].active { background: #450a0a; border-color: #f87171; color: #f87171; }
+
+    /* POSTS LIST */
+    .posts-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    .post-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .post-card {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .post-card:hover .post-title { color: var(--purple-light); }
+    .post-card:last-child { border-bottom: 1px solid var(--border); }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .post-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .post-theme-pill {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+
+    .theme-mental-health { color: #a78bfa; border-color: #4c1d95; background: rgba(167,139,250,0.08); }
+    .theme-life-memory { color: #60a5fa; border-color: #1e3a5f; background: rgba(96,165,250,0.08); }
+    .theme-collecting { color: #34d399; border-color: #064e3b; background: rgba(52,211,153,0.08); }
+    .theme-work-career { color: #f59e0b; border-color: #451a03; background: rgba(245,158,11,0.08); }
+    .theme-culture-opinion { color: #f87171; border-color: #450a0a; background: rgba(248,113,113,0.08); }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .post-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 580px;
+    }
+
+    .post-arrow {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      transition: all 0.2s;
+      padding-top: 2rem;
+    }
+
+    .post-card:hover .post-arrow {
+      color: var(--purple-light);
+      transform: translateX(3px);
+    }
+
+    /* SINGLE POST VIEW */
+    .post-view {
+      display: none;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .post-view.visible { display: block; }
+    .posts-container.hidden { display: none; }
+    .filters-bar.hidden { display: none; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 0;
+    }
+
+    .back-btn:hover { color: var(--text); }
+
+    .post-view .post-meta { margin-bottom: 1rem; }
+
+    .post-view h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.2;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .post-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .post-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .post-body p:last-child { margin-bottom: 0; }
+
+    .post-body em {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .post-signature {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+      padding: 3rem 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 860px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.25rem; }
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://glovej.ca/" class="nav-logo">glovej.ca</a>
+    <ul class="nav-links">
+      <li><a href="https://collect.glovej.ca">collect</a></li>
+      <li><a href="/writing" class="active">write</a></li>
+      <li><a href="#">reading</a></li>
+      <li><a href="#">quotes</a></li>
+      <li><a href="#">sell</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header" id="page-header">
+    <p class="page-eyebrow">Josh Glover — glovej</p>
+    <h1>The things I should have said sooner.</h1>
+    <p>Life, culture, and yes, the cards too. Not all at once. But here.</p>
+  </div>
+
+  <div class="filters-bar" id="filters-bar">
+    <span class="filter-label">filter</span>
+    <button class="filter-btn active" data-theme="all">All</button>
+    <button class="filter-btn" data-theme="mental-health">Mental Health</button>
+    <button class="filter-btn" data-theme="life-memory">Life & Memory</button>
+    <button class="filter-btn" data-theme="collecting">Collecting</button>
+    <button class="filter-btn" data-theme="work-career">Work & Career</button>
+    <button class="filter-btn" data-theme="culture-opinion">Culture & Opinion</button>
+  </div>
+
+  <div class="posts-container" id="posts-container">
+    <div id="post-list"></div>
+  </div>
+
+  <div class="post-view" id="post-view">
+    <button class="back-btn" id="back-btn">← All posts</button>
+    <div class="post-meta">
+      <span class="post-date" id="single-date"></span>
+      <span class="post-theme-pill" id="single-theme"></span>
+    </div>
+    <h1 id="single-title"></h1>
+    <div class="post-body" id="single-body"></div>
+  </div>
+
+  <footer>
+    <p>© Josh Glover — glovej.ca</p>
+    <div class="footer-links">
+      <a href="https://instagram.com/gl0vej">@gl0vej</a>
+      <a href="https://instagram.com/gl0vej_collects">@gl0vej_collects</a>
+    </div>
+  </footer>
+
+  <script>
+    const THEME_LABELS = {
+      'mental-health': 'Mental Health',
+      'life-memory': 'Life & Memory',
+      'collecting': 'Collecting',
+      'work-career': 'Work & Career',
+      'culture-opinion': 'Culture & Opinion'
+    };
+
+    let posts = [];
+    let activeTheme = 'all';
+
+    async function loadPosts() {
+      try {
+        const res = await fetch('/writing/posts.json');
+        posts = await res.json();
+        renderList();
+      } catch(e) {
+        document.getElementById('post-list').innerHTML = '<p class="empty-state">No posts yet.</p>';
+      }
+    }
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T12:00:00');
+      return d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function renderList() {
+      const filtered = activeTheme === 'all'
+        ? posts
+        : posts.filter(p => p.theme === activeTheme);
+
+      const list = document.getElementById('post-list');
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<p class="empty-state">No posts in this category yet.</p>';
+        return;
+      }
+
+      list.innerHTML = filtered.map(post => `
+        <a class="post-card" data-slug="${post.slug}" href="#">
+          <div>
+            <div class="post-meta">
+              <span class="post-date">${formatDate(post.date)}</span>
+              <span class="post-theme-pill theme-${post.theme}">${THEME_LABELS[post.theme] || post.theme}</span>
+            </div>
+            <div class="post-title">${post.title}</div>
+            <div class="post-excerpt">${post.excerpt}</div>
+          </div>
+          <div class="post-arrow">→</div>
+        </a>
+      `).join('');
+
+      document.querySelectorAll('.post-card').forEach(card => {
+        card.addEventListener('click', e => {
+          e.preventDefault();
+          loadPost(card.dataset.slug);
+        });
+      });
+    }
+
+    async function loadPost(slug) {
+      try {
+        const res = await fetch(`/writing/posts/${slug}.md`);
+        const text = await res.text();
+
+        const post = posts.find(p => p.slug === slug);
+
+        // Parse markdown paragraphs — split on double newline
+        const paragraphs = text.trim().split(/\n\n+/).map(p => {
+          // Handle the signature line
+          if (p.startsWith('—')) {
+            return `<p class="post-signature">${p}</p>`;
+          }
+          return `<p>${p.replace(/\n/g, '<br>')}</p>`;
+        }).join('');
+
+        document.getElementById('single-date').textContent = formatDate(post.date);
+        const themePill = document.getElementById('single-theme');
+        themePill.textContent = THEME_LABELS[post.theme] || post.theme;
+        themePill.className = `post-theme-pill theme-${post.theme}`;
+        document.getElementById('single-title').textContent = post.title;
+        document.getElementById('single-body').innerHTML = paragraphs;
+
+        document.getElementById('posts-container').classList.add('hidden');
+        document.getElementById('filters-bar').classList.add('hidden');
+        document.getElementById('post-view').classList.add('visible');
+        document.getElementById('page-header').style.display = 'none';
+        window.scrollTo(0, 0);
+      } catch(e) {
+        console.error('Failed to load post', e);
+      }
+    }
+
+    document.getElementById('back-btn').addEventListener('click', () => {
+      document.getElementById('posts-container').classList.remove('hidden');
+      document.getElementById('filters-bar').classList.remove('hidden');
+      document.getElementById('post-view').classList.remove('visible');
+      document.getElementById('page-header').style.display = '';
+      window.scrollTo(0, 0);
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeTheme = btn.dataset.theme;
+        renderList();
+      });
+    });
+
+    loadPosts();
+  </script>
+
+</body>
+</html>
