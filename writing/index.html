@@ -23,19 +23,18 @@
       --text: #e8e4f0;
       --text-muted: #9b94b0;
       --border: #2a2240;
+      --theme-mental-health: #a78bfa;
+      --theme-life-memory: #60a5fa;
+      --theme-collecting: #34d399;
+      --theme-work-career: #f59e0b;
+      --theme-culture-opinion: #f87171;
     }
-
-    /* Theme accent colours */
-    --theme-mental-health: #a78bfa;
-    --theme-life-memory: #60a5fa;
-    --theme-collecting: #34d399;
-    --theme-work-career: #f59e0b;
-    --theme-culture-opinion: #f87171;
 
     body {
       font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: #0d0b14;
+      background-color: #0d0b14;
+      color: #e8e4f0;
       min-height: 100vh;
       line-height: 1.6;
     }
@@ -455,37 +454,29 @@
       });
     }
 
-    async function loadPost(slug) {
-      try {
-        const res = await fetch(`/writing/posts/${slug}.md`);
-        const text = await res.text();
+    function loadPost(slug) {
+      const post = posts.find(p => p.slug === slug);
+      if (!post) return;
 
-        const post = posts.find(p => p.slug === slug);
+      const paragraphs = post.body.map(p => {
+        if (p.startsWith('—')) {
+          return `<p class="post-signature">${p}</p>`;
+        }
+        return `<p>${p}</p>`;
+      }).join('');
 
-        // Parse markdown paragraphs — split on double newline
-        const paragraphs = text.trim().split(/\n\n+/).map(p => {
-          // Handle the signature line
-          if (p.startsWith('—')) {
-            return `<p class="post-signature">${p}</p>`;
-          }
-          return `<p>${p.replace(/\n/g, '<br>')}</p>`;
-        }).join('');
+      document.getElementById('single-date').textContent = formatDate(post.date);
+      const themePill = document.getElementById('single-theme');
+      themePill.textContent = THEME_LABELS[post.theme] || post.theme;
+      themePill.className = `post-theme-pill theme-${post.theme}`;
+      document.getElementById('single-title').textContent = post.title;
+      document.getElementById('single-body').innerHTML = paragraphs;
 
-        document.getElementById('single-date').textContent = formatDate(post.date);
-        const themePill = document.getElementById('single-theme');
-        themePill.textContent = THEME_LABELS[post.theme] || post.theme;
-        themePill.className = `post-theme-pill theme-${post.theme}`;
-        document.getElementById('single-title').textContent = post.title;
-        document.getElementById('single-body').innerHTML = paragraphs;
-
-        document.getElementById('posts-container').classList.add('hidden');
-        document.getElementById('filters-bar').classList.add('hidden');
-        document.getElementById('post-view').classList.add('visible');
-        document.getElementById('page-header').style.display = 'none';
-        window.scrollTo(0, 0);
-      } catch(e) {
-        console.error('Failed to load post', e);
-      }
+      document.getElementById('posts-container').classList.add('hidden');
+      document.getElementById('filters-bar').classList.add('hidden');
+      document.getElementById('post-view').classList.add('visible');
+      document.getElementById('page-header').style.display = 'none';
+      window.scrollTo(0, 0);
     }
 
     document.getElementById('back-btn').addEventListener('click', () => {
