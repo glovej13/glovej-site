@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="IT strategist by day. Collector by conviction. The cards, quotes, memes, and half-formed thoughts that don't fit anywhere else live here." />
+  <meta name="theme-color" content="#7c28e0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>glovej.ca — Josh Glover</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7c28e0;
+      --purple-light: #9b4ff0;
+      --bg: #0d0b14;
+      --bg-card: #13101f;
+      --bg-card-hover: #1a1530;
+      --text: #e8e4f0;
+      --text-muted: #9b94b0;
+      --border: #2a2240;
+      --live: #22c55e;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13, 11, 20, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3.5rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.75rem);
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--purple-light);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 2.25rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--purple-light); }
+
+    .btn-secondary {
+      color: var(--text-muted);
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--text); border-color: var(--text-muted); }
+
+    /* GRID */
+    .grid-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .card-status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .status-live { color: var(--live); display: flex; align-items: center; gap: 0.4rem; }
+    .status-live::before {
+      content: '●';
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .status-soon { color: var(--text-muted); }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* QUOTE SECTION */
+    .quote-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    .quote-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    blockquote {
+      border-left: 3px solid var(--purple);
+      padding-left: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-body {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 640px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 860px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p { font-size: 0.8rem; color: var(--text-muted); }
+
+    .footer-links { display: flex; gap: 1.25rem; }
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://glovej.ca/" class="nav-logo">glovej.ca</a>
+    <ul class="nav-links">
+      <li><a href="https://collect.glovej.ca">collect</a></li>
+      <li><a href="/writing">write</a></li>
+      <li><a href="#">reading</a></li>
+      <li><a href="#">quotes</a></li>
+      <li><a href="#">sell</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Josh Glover — glovej</p>
+    <h1>You can't please everyone. <em>You're not nostalgia.</em></h1>
+    <p class="hero-sub">IT strategist by day. Collector by conviction. The cards, quotes, memes, and half-formed thoughts that don't fit anywhere else live here.</p>
+    <div class="hero-actions">
+      <a href="https://collect.glovej.ca" class="btn-primary">See the collection →</a>
+      <a href="https://instagram.com/gl0vej" class="btn-secondary">#relivethefun</a>
+    </div>
+  </section>
+
+  <section class="grid-section">
+    <div class="grid">
+
+      <a href="https://collect.glovej.ca" class="card">
+        <span class="card-status status-live">live</span>
+        <span class="card-title">Glovej Collects</span>
+        <span class="card-desc">The full collection. Hockey, sci-fi, autos, oddities. Browse what's in the binders.</span>
+      </a>
+
+      <a href="/writing" class="card">
+        <span class="card-status status-live">live</span>
+        <span class="card-title">Writing</span>
+        <span class="card-desc">The things I should have said sooner — life, culture, and yes, the cards too.</span>
+      </a>
+
+      <a href="#" class="card">
+        <span class="card-status status-soon">coming soon</span>
+        <span class="card-title">Quotes</span>
+        <span class="card-desc">A running archive — leadership, culture, sci-fi. These are the quotes that bring you to pause.</span>
+      </a>
+
+      <a href="#" class="card">
+        <span class="card-status status-soon">coming soon</span>
+        <span class="card-title">Reading log</span>
+        <span class="card-desc">What I've read, what I'm reading, and why it stuck. Sci-fi and leadership, mostly.</span>
+      </a>
+
+      <a href="#" class="card">
+        <span class="card-status status-soon">coming soon</span>
+        <span class="card-title">The meme vault</span>
+        <span class="card-desc">Hobby, culture, and the ones too accurate not to save. Geek and social both live here.</span>
+      </a>
+
+      <a href="#" class="card">
+        <span class="card-status status-soon">coming soon</span>
+        <span class="card-title">RTF Collectibles</span>
+        <span class="card-desc">Cards for sale. The stuff that needs a new home.</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <p class="quote-label">why collect</p>
+    <blockquote>
+      "Collecting isn't about the object. It's about owning a piece of something you felt once — and refusing to let it become just a memory."
+    </blockquote>
+    <p class="quote-body">The cards, the autos, the jersey patches — they're not investments. They're receipts. Proof that a moment mattered enough to hold onto. If you grew up with Gretzky on TV, with Hawkeye in the comics, with the feeling that some things deserved to last — you already understand this. Nobody else has to.</p>
+  </section>
+
+  <footer>
+    <p>© Josh Glover — glovej.ca</p>
+    <div class="footer-links">
+      <a href="https://instagram.com/gl0vej">@gl0vej</a>
+      <a href="https://instagram.com/gl0vej_collects">@gl0vej_collects</a>
+    </div>
+  </footer>
+
+</body>
+</html>

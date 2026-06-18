@@ -311,6 +311,49 @@
       color: var(--text-muted);
     }
 
+    .post-body figure.post-image {
+      margin: 2.5rem 0;
+    }
+
+    .post-body figure.post-image img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .post-body figure.post-image figcaption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.7rem;
+      text-align: center;
+    }
+
+    .post-body .post-image-group {
+      display: flex;
+      gap: 1rem;
+      margin: 2.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .post-body .post-image-group figure.post-image {
+      margin: 0;
+      flex: 1 1 240px;
+    }
+
+    .post-body p img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+
+    .post-body ul {
+      margin: 0 0 1.5rem 1.25rem;
+    }
+
+    .post-body ul li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
     /* EMPTY STATE */
     .empty-state {
       padding: 3rem 0;
@@ -454,6 +497,44 @@
       });
     }
 
+    const IMAGE_RE = /!\[([^\]]*)\]\(([^()\s]+)(?:\s+"([^"]*)")?\)/g;
+    const IMAGE_LINE_RE = /^!\[([^\]]*)\]\(([^()\s]+)(?:\s+"([^"]*)")?\)$/;
+
+    function renderImage(alt, src, title) {
+      const caption = title ? `<figcaption>${title}</figcaption>` : '';
+      return `<figure class="post-image"><img src="${src}" alt="${alt}" loading="lazy">${caption}</figure>`;
+    }
+
+    function renderParagraph(block) {
+      if (block.startsWith('—')) {
+        return `<p class="post-signature">${block}</p>`;
+      }
+
+      const lines = block.split('\n');
+
+      // A block made up entirely of image lines renders as figure(s),
+      // grouped side-by-side if there's more than one.
+      if (lines.every(line => IMAGE_LINE_RE.test(line.trim()))) {
+        const figures = lines.map(line => {
+          const m = line.trim().match(IMAGE_LINE_RE);
+          return renderImage(m[1], m[2], m[3]);
+        }).join('');
+        return lines.length > 1
+          ? `<div class="post-image-group">${figures}</div>`
+          : figures;
+      }
+
+      // A block made up entirely of "- " lines renders as a real list.
+      if (lines.every(line => line.trim().startsWith('- '))) {
+        const items = lines.map(line => `<li>${line.trim().slice(2)}</li>`).join('');
+        return `<ul>${items}</ul>`;
+      }
+
+      // Otherwise: normal paragraph, with any inline image syntax converted.
+      const withImages = block.replace(IMAGE_RE, (_, alt, src, title) => renderImage(alt, src, title));
+      return `<p>${withImages.replace(/\n/g, '<br>')}</p>`;
+    }
+
     async function loadPost(slug) {
       try {
         const res = await fetch(`/writing/posts/${slug}.md`);
@@ -461,19 +542,14 @@
 
         const post = posts.find(p => p.slug === slug);
 
-        const paragraphs = text.trim().split(/\n\n+/).map(p => {
-          if (p.startsWith('—')) {
-            return `<p class="post-signature">${p}</p>`;
-          }
-          return `<p>${p.replace(/\n/g, '<br>')}</p>`;
-        }).join('');
+        const body = text.trim().split(/\n\n+/).map(renderParagraph).join('');
 
         document.getElementById('single-date').textContent = formatDate(post.date);
         const themePill = document.getElementById('single-theme');
         themePill.textContent = THEME_LABELS[post.theme] || post.theme;
         themePill.className = `post-theme-pill theme-${post.theme}`;
         document.getElementById('single-title').textContent = post.title;
-        document.getElementById('single-body').innerHTML = paragraphs;
+        document.getElementById('single-body').innerHTML = body;
 
         document.getElementById('posts-container').classList.add('hidden');
         document.getElementById('filters-bar').classList.add('hidden');
