@@ -14,13 +14,13 @@
     "theme": "collecting",
     "slug": "2026-06-18-horror-fi-show-review",
     "excerpt": "Ottawa's first horror-and-sci-fi-only show, and why a smaller, all-vendor floor beat the usual general pop culture sprawl."
+  },
+  {
+    "id": "003",
+    "date": "2026-06-22",
+    "title": "How I Learned to Stop Googling and Start Talking to AI",
+    "theme": "work-career",
+    "slug": "2026-06-22-how-i-learned-to-stop-googling",
+    "excerpt": "I went from AI strategist to AI builder over three months of hobby time. A job search pipeline, a collections website, and an accidental operating system — what I actually built, and what I didn't see coming."
   }
-{
-  "slug": "2026-06-22-how-i-learned-to-stop-googling",
-  "title": "How I Learned to Stop Googling and Start Talking to AI",
-  "subtitle": "or: three months, a lot of hobby time, and an accidental operating system",
-  "date": "2026-06-22",
-  "theme": "Work & Career",
-  "status": "live"
-}
 ]
