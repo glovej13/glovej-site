@@ -465,16 +465,6 @@
     let posts = [];
     let activeTheme = 'all';
 
-    async function loadPosts() {
-      try {
-        const res = await fetch('/writing/posts.json');
-        posts = await res.json();
-        renderList();
-      } catch(e) {
-        document.getElementById('post-list').innerHTML = '<p class="empty-state">No posts yet.</p>';
-      }
-    }
-
     function formatDate(dateStr) {
       const d = new Date(dateStr + 'T12:00:00');
       return d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -571,7 +561,7 @@
       return `<p>${inlineRender(withImages).replace(/\n/g, '<br>')}</p>`;
     }
 
-    async function loadPost(slug) {
+    async function loadPost(slug, skipHistory = false) {
       try {
         const res = await fetch(`/writing/posts/${slug}.md`);
         const text = await res.text();
@@ -587,6 +577,8 @@
         document.getElementById('single-title').textContent = post.title;
         document.getElementById('single-body').innerHTML = body;
 
+        if (!skipHistory) history.pushState(null, '', '#' + slug);
+
         document.getElementById('posts-container').classList.add('hidden');
         document.getElementById('filters-bar').classList.add('hidden');
         document.getElementById('post-view').classList.add('visible');
@@ -597,12 +589,26 @@
       }
     }
 
-    document.getElementById('back-btn').addEventListener('click', () => {
+    function showList() {
       document.getElementById('posts-container').classList.remove('hidden');
       document.getElementById('filters-bar').classList.remove('hidden');
       document.getElementById('post-view').classList.remove('visible');
       document.getElementById('page-header').style.display = '';
       window.scrollTo(0, 0);
+    }
+
+    document.getElementById('back-btn').addEventListener('click', () => {
+      history.pushState(null, '', location.pathname);
+      showList();
+    });
+
+    window.addEventListener('popstate', () => {
+      if (window.location.hash) {
+        const slug = window.location.hash.slice(1);
+        if (posts.find(p => p.slug === slug)) loadPost(slug, true);
+      } else {
+        showList();
+      }
     });
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -613,6 +619,20 @@
         renderList();
       });
     });
+
+    async function loadPosts() {
+      try {
+        const res = await fetch('/writing/posts.json');
+        posts = await res.json();
+        renderList();
+        if (window.location.hash) {
+          const slug = window.location.hash.slice(1);
+          if (posts.find(p => p.slug === slug)) loadPost(slug, true);
+        }
+      } catch(e) {
+        document.getElementById('post-list').innerHTML = '<p class="empty-state">No posts yet.</p>';
+      }
+    }
 
     loadPosts();
   </script>
