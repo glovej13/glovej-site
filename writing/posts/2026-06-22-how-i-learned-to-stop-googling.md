@@ -8,7 +8,7 @@ What I want to write about is what I did with the time.
 
 Because the honest version of the last three months isn't just job searching and hobby time. It's that I went from someone who understood AI conceptually — had deployed it at an enterprise level, evaluated vendors, built governance frameworks, briefed boards — to someone who uses it every single day for things that have nothing to do with my career, and has started to understand why that distinction matters.
 
-This is that story. It's a long one. I'm telling it for a few different audiences at once: people who are curious about AI and want a real account of what it's like to learn it from the inside, friends who want to know what I've actually been doing, and the technical colleagues who don't know I collect hockey cards and would like to understand what I've been building while I collect them. If you're in one of those groups, stay with me.
+This is that story. It's a long one. I'm telling it for a few different audiences at once: people who are curious about AI and want a real account of what it's like to learn it from the inside, friends who want to know what I've actually been doing, and the technical colleagues who might like to understand what I've been building while I've been learning. If you're in one of those groups, stay with me.
 
 ---
 
