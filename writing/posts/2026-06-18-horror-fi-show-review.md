@@ -27,3 +27,5 @@ Had a good conversation with a vendor selling 3D-printed pieces alongside toys. 
 Horror isn't where my interest is, so a good chunk of the floor wasn't built for me. That's fine. The sci-fi side was worth the trip on its own, and that's really the point of a show like this: a few hours where nobody has to downplay whatever they're into, horror included, even if it's not mine.
 
 Heard from a vendor that Saturday sales were soft. Sunday wasn't too busy either, but traffic looked reasonable. Could be newness, could be advertising. I only knew about the show because I'm on the organizer's mailing list, so some more advertising might be needed. Still hoping to see this grow going forward. It'd actually be a good venue to move some of my sci-fi stuff that doesn't fit the collection anymore and never seems to be the "prime" stuff at the shows I usually do.
+
+— Josh Glover is a collector based in Ottawa. He collects Star Wars, Star Trek, Doctor Who, hockey cards, and a few other things he can't fully explain.

@@ -22,5 +22,21 @@
     "theme": "work-career",
     "slug": "2026-06-22-how-i-learned-to-stop-googling",
     "excerpt": "I went from AI strategist to AI builder over three months of hobby time. A job search pipeline, a collections website, and an accidental operating system — what I actually built, and what I didn't see coming."
+  },
+  {
+    "id": "004",
+    "date": "2026-06-26",
+    "title": "What Introversion Actually Costs",
+    "theme": "mental-health",
+    "slug": "2026-06-26-what-introversion-actually-costs",
+    "excerpt": "I would rather stand in front of 200 people and give a presentation than walk into a cocktail hour with 50. Most people find that hard to believe."
+  },
+  {
+    "id": "005",
+    "date": "2026-06-26",
+    "title": "50 Boxes for 50 Years",
+    "theme": "collecting",
+    "slug": "2026-06-26-50-boxes-for-50-years",
+    "excerpt": "Fifty boxes. Fifty years. The math was deliberate. The results were honest."
   }
 ]

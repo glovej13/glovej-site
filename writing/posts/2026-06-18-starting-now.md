@@ -10,4 +10,6 @@ I'm going to write here. About collecting — that's not going anywhere. But als
 
 Not all at once. But starting now.
 
-— Josh
+---
+
+*Josh Glover is a technology and AI strategy leader based in Ottawa. He writes here about collecting, culture, and the things he should have said sooner. The technical colleagues who wanted to know what he's been building can find him on LinkedIn.*
