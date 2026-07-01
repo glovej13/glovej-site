@@ -38,5 +38,21 @@
     "theme": "collecting",
     "slug": "2026-06-26-50-boxes-for-50-years",
     "excerpt": "Fifty boxes. Fifty years. The math was deliberate. The results were honest."
+  },
+  {
+    "id": "006",
+    "date": "2026-07-01",
+    "title": "Unapologetically Canadian",
+    "theme": "culture-opinion",
+    "slug": "2026-07-01-unapologetically-canadian",
+    "excerpt": "I've lived in four provinces, spent real time in a couple of other countries, and done enough travelling to have a frame of reference. So when I say I wouldn't want to live anywhere else, it's not a default."
+  },
+  {
+    "id": "007",
+    "date": "2026-07-01",
+    "title": "Collecting Canadian",
+    "theme": "collecting",
+    "slug": "2026-07-01-collecting-canadian",
+    "excerpt": "The maple leaf shows up in the collection more than I planned for it to. Turns out if you put a maple leaf on something, I'll probably end up owning it."
   }
 ]

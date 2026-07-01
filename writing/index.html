@@ -623,7 +623,7 @@
     async function loadPosts() {
       try {
         const res = await fetch('/writing/posts.json');
-        posts = await res.json();
+        posts = (await res.json()).reverse();
         renderList();
         if (window.location.hash) {
           const slug = window.location.hash.slice(1);
