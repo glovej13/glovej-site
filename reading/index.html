@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Josh Glover's reading shelf — memoir, sci-fi, and everything in between, with the actual take on each." />
+  <meta name="theme-color" content="#7c28e0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Reading — glovej.ca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7c28e0;
+      --purple-light: #9b4ff0;
+      --bg: #0d0b14;
+      --bg-card: #13101f;
+      --bg-card-hover: #1a1530;
+      --text: #e8e4f0;
+      --text-muted: #9b94b0;
+      --border: #2a2240;
+      --live: #22c55e;
+
+      --tag-memoir: #e0a028;
+      --tag-scifi: #4f8ff0;
+      --tag-graphic: #f0574f;
+      --tag-tiein: #4fd6c0;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    /* NAV — identical to homepage */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13, 11, 20, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.current { color: var(--purple-light); }
+
+    /* HERO-style header */
+    .page-header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.75rem);
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .page-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* Intro / "what I read" collapsible block */
+    .intro-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
+    }
+
+    .intro {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .intro-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .intro-opener {
+      font-size: 1.02rem;
+      color: var(--text);
+      margin-top: 12px;
+    }
+
+    details.more-toggle {
+      margin-top: 14px;
+    }
+    details.more-toggle summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    details.more-toggle summary::-webkit-details-marker { display: none; }
+    details.more-toggle summary::before {
+      content: 'Show more +';
+    }
+    details.more-toggle[open] summary::before {
+      content: 'Show less \2013';
+    }
+    details.more-toggle summary:hover { color: var(--text); }
+
+    .intro-more {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+      line-height: 1.75;
+      max-width: 640px;
+    }
+
+    /* FILTERS */
+    .filters {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filters button {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.55rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .filters button:hover { color: var(--text); border-color: var(--text-muted); }
+    .filters button.active {
+      background: var(--purple);
+      color: #fff;
+      border-color: var(--purple);
+    }
+
+    /* SHELF */
+    .shelf-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .shelf-group { margin-bottom: 2.5rem; }
+
+    .shelf-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .shelf-label .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .card-status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .card-status .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-author {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: -0.3rem;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .empty, .loading {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ARTICLE VIEW */
+    .article-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--text); }
+
+    .article-meta {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .article-author {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .article p { margin-bottom: 1.3rem; font-size: 1rem; color: var(--text); }
+
+    .article p.subtitle {
+      border-left: 3px solid var(--purple);
+      padding-left: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .article h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 2.2rem 0 1rem;
+    }
+
+    .article hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    .article ul { margin: 0 0 1.3rem 1.2rem; }
+    .article li { margin-bottom: 0.4rem; color: var(--text); }
+
+    .article p.signature {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .article figure { margin: 1.75rem 0; }
+    .article figure img { width: 100%; display: block; border-radius: 8px; }
+    .article figure figcaption { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem; }
+    .image-row { display: flex; gap: 1rem; margin: 1.75rem 0; flex-wrap: wrap; }
+    .image-row figure { flex: 1 1 240px; margin: 0; }
+    .image-row img { width: 100%; display: block; border-radius: 8px; }
+
+    /* FOOTER — identical to homepage */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 860px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer p { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.25rem; }
+    .footer-links a { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://glovej.ca/" class="nav-logo">glovej.ca</a>
+    <ul class="nav-links">
+      <li><a href="https://collect.glovej.ca">collect</a></li>
+      <li><a href="/writing">write</a></li>
+      <li><a href="/reading" class="current">reading</a></li>
+      <li><a href="#">quotes</a></li>
+      <li><a href="#">sell</a></li>
+    </ul>
+  </nav>
+
+  <div id="app">
+    <p class="loading" style="padding-top:3rem;">Loading the shelf…</p>
+  </div>
+
+  <footer>
+    <p>© Josh Glover — glovej.ca</p>
+    <div class="footer-links">
+      <a href="https://instagram.com/gl0vej">@gl0vej</a>
+      <a href="https://instagram.com/gl0vej_collects">@gl0vej_collects</a>
+    </div>
+  </footer>
+
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d9948f14b12649328ae26fc0097e944d"}'></script><!-- End Cloudflare Web Analytics -->
+
+<script>
+(function(){
+
+  var CATEGORY_LABELS = {
+    "memoir-bio": "Memoir & Biography",
+    "sci-fi": "Science Fiction",
+    "graphic-novel": "Graphic Novel",
+    "tie-in-fiction": "Tie-in Fiction"
+  };
+  var CATEGORY_ORDER = ["memoir-bio", "sci-fi", "graphic-novel", "tie-in-fiction"];
+  var CATEGORY_COLOR = {
+    "memoir-bio": "var(--tag-memoir)",
+    "sci-fi": "var(--tag-scifi)",
+    "graphic-novel": "var(--tag-graphic)",
+    "tie-in-fiction": "var(--tag-tiein)"
+  };
+
+  var app = document.getElementById('app');
+  var booksCache = null;
+  var currentFilter = 'all';
+
+  function escapeHtml(str){
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function inlineFormat(text){
+    var out = escapeHtml(text);
+    out = out.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    return out;
+  }
+
+  // Markdown renderer — mirrors the writing/ renderer rules: ## headings,
+  // bold/italic, --- dividers, "- " lists, image syntax incl. side-by-side
+  // pairs, em-dash signature line.
+  function renderMarkdown(md){
+    var blocks = md.trim().split(/\n\s*\n/);
+    var html = '';
+    var firstParagraphSeen = false;
+
+    blocks.forEach(function(block){
+      block = block.trim();
+      if(!block) return;
+
+      var lines = block.split('\n');
+
+      if(block === '---'){ html += '<hr>'; return; }
+
+      if(block.indexOf('## ') === 0){
+        html += '<h2>' + inlineFormat(block.slice(3).trim()) + '</h2>';
+        return;
+      }
+
+      if(lines.every(function(l){ return l.trim().indexOf('- ') === 0; })){
+        html += '<ul>' + lines.map(function(l){
+          return '<li>' + inlineFormat(l.trim().slice(2)) + '</li>';
+        }).join('') + '</ul>';
+        return;
+      }
+
+      var imgLines = lines.filter(function(l){ return /^!\[.*\]\(.*\)/.test(l.trim()); });
+      if(imgLines.length === lines.length){
+        var figs = lines.map(function(l){
+          var m = l.trim().match(/^!\[(.*?)\]\((\S+)(?:\s+"(.*?)")?\)/);
+          if(!m) return '';
+          var alt = m[1], src = m[2], cap = m[3];
+          return '<figure><img src="' + src + '" alt="' + escapeHtml(alt) + '">' +
+                 (cap ? '<figcaption>' + escapeHtml(cap) + '</figcaption>' : '') +
+                 '</figure>';
+        }).join('');
+        html += lines.length > 1 ? '<div class="image-row">' + figs + '</div>' : figs;
+        return;
+      }
+
+      if(block.indexOf('\u2014') === 0){
+        html += '<p class="signature">' + inlineFormat(block) + '</p>';
+        return;
+      }
+
+      var subtitleMatch = block.match(/^\*(.+)\*$/);
+      if(!firstParagraphSeen && subtitleMatch && lines.length === 1){
+        html += '<p class="subtitle">' + inlineFormat(subtitleMatch[1]) + '</p>';
+        firstParagraphSeen = true;
+        return;
+      }
+
+      html += '<p>' + lines.map(inlineFormat).join('<br>') + '</p>';
+      firstParagraphSeen = true;
+    });
+
+    return html;
+  }
+
+  function loadBooks(){
+    if(booksCache) return Promise.resolve(booksCache);
+    return fetch('books.json').then(function(r){ return r.json(); }).then(function(data){
+      booksCache = data;
+      return data;
+    });
+  }
+
+  function renderShelf(){
+    loadBooks().then(function(books){
+      var filtered = books.filter(function(b){
+        if(currentFilter === 'all') return true;
+        if(currentFilter === 'fiction') return b.fiction === true;
+        return b.fiction === false;
+      });
+
+      var byCategory = {};
+      filtered.forEach(function(b){
+        (byCategory[b.category] = byCategory[b.category] || []).push(b);
+      });
+
+      var groupsHtml = CATEGORY_ORDER.filter(function(c){ return byCategory[c] && byCategory[c].length; })
+        .map(function(cat){
+          var color = CATEGORY_COLOR[cat];
+          var cardsHtml = byCategory[cat].map(function(b){
+            return '<a class="card" href="#' + b.slug + '">' +
+              '<span class="card-status" style="color:' + color + '"><span class="dot" style="background:' + color + '"></span>' +
+                (b.fiction ? 'Fiction' : 'Non-fiction') + '</span>' +
+              '<span class="card-title">' + escapeHtml(b.title) + '</span>' +
+              '<span class="card-author">' + escapeHtml(b.author) + '</span>' +
+              '<span class="card-desc">' + escapeHtml(b.hook) + '</span>' +
+            '</a>';
+          }).join('');
+
+          return '<div class="shelf-group">' +
+            '<div class="shelf-label"><span class="dot" style="background:' + color + '"></span>' + CATEGORY_LABELS[cat] + '</div>' +
+            '<div class="grid">' + cardsHtml + '</div>' +
+          '</div>';
+        }).join('');
+
+      app.innerHTML =
+        '<div class="page-header">' +
+          '<p class="eyebrow">Josh Glover — glovej</p>' +
+          '<h1>Reading</h1>' +
+          '<p class="page-sub">' + books.length + ' books on the shelf, grouped the way I actually think about them.</p>' +
+        '</div>' +
+        '<div class="intro-wrap">' +
+          '<div class="intro">' +
+            '<p class="intro-label">What I read, and why</p>' +
+            '<p class="intro-opener">I read to learn and grow, or more often just to lose myself. Runs of similar books and trilogies bundled here to avoid repetition.</p>' +
+            '<details class="more-toggle">' +
+              '<summary></summary>' +
+              '<p class="intro-more">This is a mix of business adjacent non-fiction, and a large bias to science fiction, but occasionally other fiction. For launch this page has the last 2 years of reading because those were both easy to locate in the stacks and bookshelf in my office, and reasonable to try and provide some insight on without going into deep memories or having to re-read. I\u2019ll update with new content as I read forward, with a caveat that I\u2019m not reading in my current life situation/cycle, as there\u2019s too much else going on. I hope to return to reading and populating this soon, general goal was always at least a book a month no matter how busy things get.</p>' +
+            '</details>' +
+          '</div>' +
+          '</details>' +
+        '</div>' +
+        '<div class="filters">' +
+          '<button data-filter="all" class="' + (currentFilter==='all'?'active':'') + '">All</button>' +
+          '<button data-filter="fiction" class="' + (currentFilter==='fiction'?'active':'') + '">Fiction</button>' +
+          '<button data-filter="nonfiction" class="' + (currentFilter==='nonfiction'?'active':'') + '">Non-fiction</button>' +
+        '</div>' +
+        '<div class="shelf-section">' + (groupsHtml || '<p class="empty">Nothing on the shelf for this filter yet.</p>') + '</div>';
+
+      var filterButtons = app.querySelectorAll('.filters button');
+      for(var i=0;i<filterButtons.length;i++){
+        filterButtons[i].addEventListener('click', function(e){
+          currentFilter = e.target.getAttribute('data-filter');
+          renderShelf();
+        });
+      }
+    });
+  }
+
+  function callNumber(book){
+    var prefix = { 'memoir-bio':'92', 'sci-fi':'813.9', 'graphic-novel':'741.5', 'tie-in-fiction':'813.6' };
+    var authorCode = (book.author.split(/[\s,]+/)[0] || '').slice(0,3).toUpperCase();
+    return (prefix[book.category] || '000') + ' ' + authorCode;
+  }
+
+  function renderArticle(slug){
+    loadBooks().then(function(books){
+      var book = books.filter(function(b){ return b.slug === slug; })[0];
+      if(!book){
+        app.innerHTML = '<div class="article-wrap">' +
+          '<a class="back-link" href="#">\u2190 Back to the shelf</a>' +
+          '<p class="empty">Couldn\u2019t find that one on the shelf.</p>' +
+        '</div>';
+        return;
+      }
+
+      fetch('reviews/' + slug + '.md').then(function(r){ return r.text(); }).then(function(md){
+        app.innerHTML =
+          '<div class="article-wrap">' +
+            '<a class="back-link" href="#">\u2190 Back to the shelf</a>' +
+            '<div class="article">' +
+              '<div class="article-meta">' + callNumber(book) + ' &middot; ' +
+                CATEGORY_LABELS[book.category] + ' &middot; ' + (book.fiction ? 'Fiction' : 'Non-fiction') + '</div>' +
+              '<h1 class="article-title">' + escapeHtml(book.title) + '</h1>' +
+              '<div class="article-author">' + escapeHtml(book.author) + '</div>' +
+              renderMarkdown(md) +
+            '</div>' +
+          '</div>';
+      });
+    });
+  }
+
+  function route(){
+    var hash = location.hash.replace(/^#/, '');
+    if(hash){ renderArticle(hash); } else { renderShelf(); }
+    window.scrollTo(0,0);
+  }
+
+  window.addEventListener('hashchange', route);
+  route();
+
+})();
+</script>
+</body>
+</html>

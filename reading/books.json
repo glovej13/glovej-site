@@ -1,0 +1,92 @@
+[
+  {
+    "id": "001",
+    "title": "No One Wins Alone",
+    "author": "Mark Messier",
+    "category": "memoir-bio",
+    "fiction": false,
+    "hook": "Six Cups, one voice, and the leadership lessons hockey never puts on the scoresheet.",
+    "slug": "no-one-wins-alone"
+  },
+  {
+    "id": "002",
+    "title": "My Next Breath",
+    "author": "Jeremy Renner",
+    "category": "memoir-bio",
+    "fiction": false,
+    "hook": "What's left when the body gives out and the will has to do the rest.",
+    "slug": "my-next-breath"
+  },
+  {
+    "id": "003",
+    "title": "Shoe Dog",
+    "author": "Phil Knight",
+    "category": "memoir-bio",
+    "fiction": false,
+    "hook": "A fifty-dollar loan, a decade of chaos, and the messy true story behind a swoosh.",
+    "slug": "shoe-dog"
+  },
+  {
+    "id": "004",
+    "title": "Karamo",
+    "author": "Karamo Brown",
+    "category": "memoir-bio",
+    "fiction": false,
+    "hook": "The book that quietly started a conversation I didn't know I needed to have with myself.",
+    "slug": "karamo"
+  },
+  {
+    "id": "005",
+    "title": "The Lost Fleet: Outlands",
+    "author": "Jack Campbell",
+    "category": "sci-fi",
+    "fiction": true,
+    "hook": "Black Jack Geary tries diplomacy this time \u2014 and it's almost harder than war.",
+    "slug": "lost-fleet-outlands"
+  },
+  {
+    "id": "006",
+    "title": "DMZ",
+    "author": "Brian Wood",
+    "category": "graphic-novel",
+    "fiction": true,
+    "hook": "Manhattan as a demilitarized zone, and one reporter who refuses to leave.",
+    "slug": "dmz"
+  },
+  {
+    "id": "007",
+    "title": "Firefly (Titan Novel Series)",
+    "author": "James Lovegrove and others",
+    "category": "tie-in-fiction",
+    "fiction": true,
+    "hook": "Nine more trips aboard Serenity, for a show that never got enough episodes.",
+    "slug": "firefly-novels"
+  },
+  {
+    "id": "008",
+    "title": "Star Wars: Thrawn Ascendancy",
+    "author": "Timothy Zahn",
+    "category": "tie-in-fiction",
+    "fiction": true,
+    "hook": "The Empire's best strategist, before he was ever the Empire's.",
+    "slug": "thrawn-ascendancy"
+  },
+  {
+    "id": "009",
+    "title": "Breaking the Dark",
+    "author": "Lisa Jewell",
+    "category": "tie-in-fiction",
+    "fiction": true,
+    "hook": "Jessica Jones does noir, and it actually earns the comparison.",
+    "slug": "breaking-the-dark"
+  },
+  {
+    "id": "010",
+    "title": "Silo",
+    "author": "Hugh Howey",
+    "category": "sci-fi",
+    "fiction": true,
+    "hook": "Everyone in the silo knows the one rule. Someone always breaks it.",
+    "slug": "silo"
+  }
+]
