@@ -1,82 +1,90 @@
 [
-  {
-    "id": "001",
-    "date": "2026-06-18",
-    "title": "Starting now.",
-    "theme": "mental-health",
-    "slug": "2026-06-18-starting-now",
-    "excerpt": "Three months of telling the story quietly, in pieces, to whoever asked, is enough of that."
-  },
-  {
-    "id": "002",
-    "date": "2026-06-18",
-    "title": "Horror-Fi: Ottawa's First Horror & Sci-Fi Con",
-    "theme": "collecting",
-    "slug": "2026-06-18-horror-fi-show-review",
-    "excerpt": "Ottawa's first horror-and-sci-fi-only show, and why a smaller, all-vendor floor beat the usual general pop culture sprawl."
-  },
-  {
-    "id": "003",
-    "date": "2026-06-22",
-    "title": "How I Learned to Stop Googling and Start Talking to AI",
-    "theme": "work-career",
-    "slug": "2026-06-22-how-i-learned-to-stop-googling",
-    "excerpt": "I went from AI strategist to AI builder over three months of hobby time. A job search pipeline, a collections website, and an accidental operating system — what I actually built, and what I didn't see coming."
-  },
-  {
-    "id": "004",
-    "date": "2026-06-26",
-    "title": "What Introversion Actually Costs",
-    "theme": "mental-health",
-    "slug": "2026-06-26-what-introversion-actually-costs",
-    "excerpt": "I would rather stand in front of 200 people and give a presentation than walk into a cocktail hour with 50. Most people find that hard to believe."
-  },
-  {
-    "id": "005",
-    "date": "2026-06-26",
-    "title": "50 Boxes for 50 Years",
-    "theme": "collecting",
-    "slug": "2026-06-26-50-boxes-for-50-years",
-    "excerpt": "Fifty boxes. Fifty years. The math was deliberate. The results were honest."
-  },
-  {
-    "id": "006",
-    "date": "2026-07-01",
-    "title": "Unapologetically Canadian",
-    "theme": "culture-opinion",
-    "slug": "2026-07-01-unapologetically-canadian",
-    "excerpt": "I've lived in four provinces, spent real time in a couple of other countries, and done enough travelling to have a frame of reference. So when I say I wouldn't want to live anywhere else, it's not a default."
-  },
-  {
-    "id": "007",
-    "date": "2026-07-01",
-    "title": "Collecting Canadian",
-    "theme": "collecting",
-    "slug": "2026-07-01-collecting-canadian",
-    "excerpt": "The maple leaf shows up in the collection more than I planned for it to. Turns out if you put a maple leaf on something, I'll probably end up owning it."
-  },
-  {
-    "id": "008",
-    "date": "2026-07-04",
-    "title": "Turning it off",
-    "theme": "mental-health",
-    "slug": "2026-07-04-turning-it-off",
-    "excerpt": "What drives you gets talked about constantly. What lets you stop gets a lot less airtime. Both matter, and I've spent the last few years finding that out the hard way."
-  },
-  {
-    "id": "009",
-    "date": "2026-07-08",
-    "title": "Puzzles, Lego, and the art of blanking out",
-    "theme": "collecting",
-    "slug": "2026-07-08-puzzles-lego-and-the-art-of-blanking-out",
-    "excerpt": "Adult Fan of Lego is having a moment, and I've got a shelf of unbuilt sets to prove it. Turns out it's not all nostalgia for me."
-  },
-  {
-    "id": "010",
-    "date": "2026-07-11",
-    "title": "Turning it off — the AI offload thread",
-    "theme": "mental-health",
-    "slug": "2026-07-11-turning-it-off-the-ai-offload-thread",
-    "excerpt": "Some things blank my brain out completely. This one works the opposite way: less about getting absorbed, more about finally trusting a system enough to let a thought go."
-  }
+{
+"id": "001",
+"date": "2026-06-18",
+"title": "Starting now.",
+"theme": "mental-health",
+"slug": "2026-06-18-starting-now",
+"excerpt": "Three months of telling the story quietly, in pieces, to whoever asked, is enough of that."
+},
+{
+"id": "002",
+"date": "2026-06-18",
+"title": "Horror-Fi: Ottawa's First Horror & Sci-Fi Con",
+"theme": "collecting",
+"slug": "2026-06-18-horror-fi-show-review",
+"excerpt": "Ottawa's first horror-and-sci-fi-only show, and why a smaller, all-vendor floor beat the usual general pop culture sprawl."
+},
+{
+"id": "003",
+"date": "2026-06-22",
+"title": "How I Learned to Stop Googling and Start Talking to AI",
+"theme": "work-career",
+"slug": "2026-06-22-how-i-learned-to-stop-googling",
+"excerpt": "I went from AI strategist to AI builder over three months of hobby time. A job search pipeline, a collections website, and an accidental operating system — what I actually built, and what I didn't see coming."
+},
+{
+"id": "004",
+"date": "2026-06-26",
+"title": "What Introversion Actually Costs",
+"theme": "mental-health",
+"slug": "2026-06-26-what-introversion-actually-costs",
+"excerpt": "I would rather stand in front of 200 people and give a presentation than walk into a cocktail hour with 50. Most people find that hard to believe."
+},
+{
+"id": "005",
+"date": "2026-06-26",
+"title": "50 Boxes for 50 Years",
+"theme": "collecting",
+"slug": "2026-06-26-50-boxes-for-50-years",
+"excerpt": "Fifty boxes. Fifty years. The math was deliberate. The results were honest."
+},
+{
+"id": "006",
+"date": "2026-07-01",
+"title": "Unapologetically Canadian",
+"theme": "culture-opinion",
+"slug": "2026-07-01-unapologetically-canadian",
+"excerpt": "I've lived in four provinces, spent real time in a couple of other countries, and done enough travelling to have a frame of reference. So when I say I wouldn't want to live anywhere else, it's not a default."
+},
+{
+"id": "007",
+"date": "2026-07-01",
+"title": "Collecting Canadian",
+"theme": "collecting",
+"slug": "2026-07-01-collecting-canadian",
+"excerpt": "The maple leaf shows up in the collection more than I planned for it to. Turns out if you put a maple leaf on something, I'll probably end up owning it."
+},
+{
+"id": "008",
+"date": "2026-07-04",
+"title": "Turning it off",
+"theme": "mental-health",
+"slug": "2026-07-04-turning-it-off",
+"excerpt": "What drives you gets talked about constantly. What lets you stop gets a lot less airtime. Both matter, and I've spent the last few years finding that out the hard way."
+},
+{
+"id": "009",
+"date": "2026-07-08",
+"title": "Puzzles, Lego, and the art of blanking out",
+"theme": "collecting",
+"slug": "2026-07-08-puzzles-lego-and-the-art-of-blanking-out",
+"excerpt": "Adult Fan of Lego is having a moment, and I've got a shelf of unbuilt sets to prove it. Turns out it's not all nostalgia for me."
+},
+{
+"id": "010",
+"date": "2026-07-11",
+"title": "Turning it off — the AI offload thread",
+"theme": "mental-health",
+"slug": "2026-07-11-turning-it-off-the-ai-offload-thread",
+"excerpt": "Some things blank my brain out completely. This one works the opposite way: less about getting absorbed, more about finally trusting a system enough to let a thought go."
+},
+{
+"id": "011",
+"date": "2026-07-16",
+"title": "A Day in the Life",
+"theme": "work-career",
+"slug": "2026-07-16-a-day-in-the-life",
+"excerpt": "Two days, logged as they happened — job search, content pipeline, a management system BRD, and a last-minute Canada Day post. This is what the actual work looks like."
+}
 ]
